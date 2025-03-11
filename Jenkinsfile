@@ -11,15 +11,14 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the application...'
-                sh 'ls -la main'  // Debugging: List files inside 'main'
-                sh 'g++ -o main/hello_exec main/hello.cpp'  // Compile inside 'main'
+                sh 'g++ -o main/hello_exec main/hello.cpp'
             }
         }
         
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                sh './main/hello_exec'  // Run compiled executable
+                sh './main/hello_exec'
             }
         }
         

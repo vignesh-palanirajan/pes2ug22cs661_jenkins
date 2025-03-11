@@ -1,25 +1,31 @@
 pipeline {
-    agent any  // Runs on any available agent
+    agent any
     
     stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/vignesh-palanirajan/pes2ug22cs661_jenkins'
+            }
+        }
+        
         stage('Build') {
             steps {
                 echo 'Building the application...'
-                sh 'g++ -o hello_exec hello.cpp'  // Compiling C++ file
+                sh 'ls -la main'  // Debugging: List files inside 'main'
+                sh 'g++ -o main/hello_exec main/hello.cpp'  // Compile inside 'main'
             }
         }
         
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                sh './hello_exec'  // Executing compiled C++ file
+                sh './main/hello_exec'  // Run compiled executable
             }
         }
         
         stage('Deploy') {
             steps {
                 echo 'Deploying application...'
-                sh 'echo "Deployment Complete"'
             }
         }
     }

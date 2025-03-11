@@ -18,7 +18,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                sh './main/hello_exec'
+                sh './main/non_existent_file' // This file does not exist, so it will fail
             }
         }
         
